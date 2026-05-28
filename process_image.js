@@ -21,6 +21,7 @@ async function processImage(sourcePath, hub, slug) {
     const targetPath = path.join(targetDir, 'cover.webp');
 
     await sharp(sourcePath)
+      .resize(1200, 800, { fit: 'cover', position: 'centre' })
       .webp({ quality: 85 })
       .toFile(targetPath);
 

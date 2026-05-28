@@ -1,5 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  getArticleImage,
+  getArticleImageAlt,
+  getArticleImageHeight,
+  getArticleImageWidth,
+  handleArticleImageError,
+} from "../../utils/images";
 
 export default function ArticleCard({ article, variant = "default" }) {
   if (!article) return null;
@@ -21,8 +28,13 @@ export default function ArticleCard({ article, variant = "default" }) {
     >
       <Link to={`/articles/${article.slug}`} style={{ display: "block", overflow: "hidden" }}>
         <img
-          src={article.coverImage?.src || article.image}
-          alt={article.coverImage?.alt || article.title}
+          src={getArticleImage(article)}
+          alt={getArticleImageAlt(article)}
+          width={getArticleImageWidth(article)}
+          height={getArticleImageHeight(article)}
+          loading={isLarge ? "eager" : "lazy"}
+          decoding="async"
+          onError={handleArticleImageError}
           style={{
             width: "100%",
             height: isLarge ? "300px" : "190px",
@@ -63,4 +75,3 @@ export default function ArticleCard({ article, variant = "default" }) {
     </article>
   );
 }
-
