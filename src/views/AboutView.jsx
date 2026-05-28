@@ -1,8 +1,16 @@
 import React from 'react';
+import SEO from '../components/SEO';
+import { breadcrumbJsonLd } from '../utils/seo';
 
 export default function AboutView({ onNavigate }) {
   return (
     <main className="fix">
+      <SEO
+        title="About Labrador.lk"
+        description="Learn about Labrador.lk, Sri Lanka's Labrador-specific educational article platform for owners and families."
+        path="/about"
+        jsonLd={[breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'About Labrador.lk', path: '/about' }])]}
+      />
       {/* Hero Banner — cream, editorial */}
       <section style={{ background: 'var(--llk-cream)', borderTop: '4px solid #E2001A', paddingTop: '60px', paddingBottom: '50px' }}>
         <div className="container">
