@@ -440,16 +440,18 @@ export default function ArticleReaderView() {
               </div>
 
               <figure style={{ margin: "0 0 32px 0" }}>
-                <img
-                  src={getArticleImage(article)}
-                  alt={getArticleImageAlt(article)}
-                  width={getArticleImageWidth(article)}
-                  height={getArticleImageHeight(article)}
-                  loading="eager"
-                  decoding="async"
-                  onError={handleArticleImageError}
-                  style={{ width: "100%", maxHeight: "460px", objectFit: "cover", borderRadius: "8px", border: "1px solid #EAE2D8" }}
-                />
+                <div style={{ background: "#F6F1EA", borderRadius: "8px", border: "1px solid #EAE2D8", overflow: "hidden", aspectRatio: "3 / 2" }}>
+                  <img
+                    src={getArticleImage(article)}
+                    alt={getArticleImageAlt(article)}
+                    width={getArticleImageWidth(article)}
+                    height={getArticleImageHeight(article)}
+                    loading="eager"
+                    decoding="async"
+                    onError={handleArticleImageError}
+                    style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                  />
+                </div>
                 {article.coverImage?.caption && (
                   <figcaption style={{ fontSize: "13px", color: "#666", textAlign: "center", marginTop: "12px", lineHeight: 1.5 }}>
                     {article.coverImage.caption}
@@ -537,7 +539,7 @@ export default function ArticleReaderView() {
                         loading="lazy"
                         decoding="async"
                         onError={handleArticleImageError}
-                        style={{ width: "68px", height: "58px", objectFit: "cover", borderRadius: "6px" }}
+                        style={{ width: "68px", height: "58px", objectFit: "contain", borderRadius: "6px", background: "#F6F1EA", border: "1px solid #EAE2D8" }}
                       />
                       <span style={{ fontSize: "13px", fontWeight: 800, lineHeight: 1.35 }}>{item.title}</span>
                     </Link>

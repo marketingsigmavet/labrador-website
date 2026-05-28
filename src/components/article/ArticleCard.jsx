@@ -26,7 +26,16 @@ export default function ArticleCard({ article, variant = "default" }) {
         transition: "border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease",
       }}
     >
-      <Link to={`/articles/${article.slug}`} style={{ display: "block", overflow: "hidden" }}>
+      <Link
+        to={`/articles/${article.slug}`}
+        style={{
+          display: "block",
+          overflow: "hidden",
+          background: "#F6F1EA",
+          aspectRatio: "3 / 2",
+          borderBottom: "1px solid #EAE2D8",
+        }}
+      >
         <img
           src={getArticleImage(article)}
           alt={getArticleImageAlt(article)}
@@ -37,8 +46,8 @@ export default function ArticleCard({ article, variant = "default" }) {
           onError={handleArticleImageError}
           style={{
             width: "100%",
-            height: isLarge ? "300px" : "190px",
-            objectFit: "cover",
+            height: "100%",
+            objectFit: "contain",
             display: "block",
           }}
         />

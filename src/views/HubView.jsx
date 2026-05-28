@@ -7,6 +7,7 @@ import Pagination from "../components/article/Pagination";
 import SectionHeading from "../components/article/SectionHeading";
 import { allArticles, getArticleBySlug } from "../data/articleData";
 import { getHub } from "../utils/articleQueries";
+import { getArticleImage, getArticleImageAlt, handleArticleImageError } from "../utils/images";
 import { breadcrumbJsonLd, itemListJsonLd } from "../utils/seo";
 
 export default function HubView() {
@@ -17,6 +18,7 @@ export default function HubView() {
 
   const articles = allArticles.filter((article) => article.hub === hub.id);
   const featured = articles[0];
+  const sideFeatured = articles.filter((article) => article.slug !== featured?.slug).slice(0, 4);
   const startHere = hub.startHere.map(getArticleBySlug).filter(Boolean);
   const remaining = articles.filter((article) => !startHere.some((item) => item.slug === article.slug));
   const libraryArticles = remaining.length ? remaining : articles;
@@ -69,7 +71,61 @@ export default function HubView() {
         <section style={{ padding: "56px 0 20px", background: "#fff" }}>
           <div className="container">
             <SectionHeading kicker="Featured guide" title={`Start with ${hub.label}`} />
-            <ArticleCard article={featured} variant="large" />
+            <div className="row g-4 align-items-stretch">
+              <div className="col-lg-7">
+                <ArticleCard article={featured} variant="large" />
+              </div>
+              <div className="col-lg-5">
+                <div style={{ height: "100%", border: "1px solid #EAE2D8", borderRadius: "8px", background: "#FCFBF7", padding: "16px" }}>
+                  <div style={{ border: "1px solid #D4AF37", borderRadius: "8px", background: "#fff", padding: "16px", marginBottom: "14px" }}>
+                    <span style={{ display: "block", color: "#E2001A", fontSize: "10px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "1.2px", marginBottom: "6px" }}>
+                      {hub.kicker}
+                    </span>
+                    <h3 style={{ fontSize: "17px", fontWeight: 950, lineHeight: 1.25, margin: "0 0 8px", color: "#1a1a1a" }}>
+                      {hub.title}
+                    </h3>
+                    <p style={{ color: "#555", fontSize: "13px", lineHeight: 1.6, margin: "0 0 10px" }}>
+                      {hub.description}
+                    </p>
+                    <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", alignItems: "center" }}>
+                      <span style={{ color: "#777", fontSize: "12px", fontWeight: 800 }}>{articles.length} articles</span>
+                      <Link to={`/articles?hub=${hub.id}`} style={{ color: "#E2001A", fontSize: "12px", fontWeight: 900, textDecoration: "none" }}>
+                        Browse hub
+                      </Link>
+                    </div>
+                  </div>
+                  <p style={{ color: "#E2001A", fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "1.2px", margin: "0 0 10px" }}>
+                    More from this hub
+                  </p>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: "12px" }}>
+                    {sideFeatured.map((article) => (
+                      <Link
+                        key={article.slug}
+                        to={`/articles/${article.slug}`}
+                        style={{ display: "flex", flexDirection: "column", color: "#1a1a1a", textDecoration: "none", border: "1px solid #EAE2D8", borderRadius: "8px", background: "#fff", overflow: "hidden", minHeight: "100%" }}
+                      >
+                        <span style={{ display: "block", aspectRatio: "3 / 2", background: "#F6F1EA", borderBottom: "1px solid #EAE2D8", overflow: "hidden" }}>
+                          <img
+                            src={getArticleImage(article)}
+                            alt={getArticleImageAlt(article)}
+                            loading="lazy"
+                            decoding="async"
+                            onError={handleArticleImageError}
+                            style={{ width: "100%", height: "100%", objectFit: "contain", display: "block" }}
+                          />
+                        </span>
+                        <span style={{ display: "block", padding: "10px 11px 12px" }}>
+                          <span style={{ display: "block", color: "#777", fontSize: "10px", fontWeight: 800, marginBottom: "4px" }}>
+                            {article.readingTime}
+                          </span>
+                          <strong style={{ display: "block", fontSize: "12px", lineHeight: 1.35, fontWeight: 900 }}>{article.title}</strong>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
       )}
