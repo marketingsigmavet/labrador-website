@@ -9,7 +9,14 @@ export const article = {
   series: "Labrador Health Prevention Series",
   seriesOrder: 1,
   date: "3 February, 2026",
-  image: "/assets/img/blog/featured_post01.jpg",
+  coverImage: {
+    src: "/images/articles/health/common-labrador-health-problems/cover.webp",
+    alt: "Labrador sitting calmly in a preventive health care setting",
+    caption: "Early awareness helps owners protect Labrador health before problems grow.",
+    width: 1200,
+    height: 800,
+    style: "bw-red-editorial"
+  },
   readTime: "7 Mins",
   featured: true,
   seoTitle: "Common Labrador Health Problems in Sri Lanka",

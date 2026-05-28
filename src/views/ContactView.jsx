@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
+import { breadcrumbJsonLd, faqJsonLd } from '../utils/seo';
 
 export default function ContactView() {
   const [name, setName] = useState('');
@@ -44,6 +46,15 @@ export default function ContactView() {
 
   return (
     <main className="fix">
+      <SEO
+        title="Ask Labrador.lk"
+        description="Ask Labrador.lk a Labrador Retriever care question or browse frequently asked questions for Sri Lankan owners."
+        path="/ask"
+        jsonLd={[
+          breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Ask Labrador.lk', path: '/ask' }]),
+          faqJsonLd(faqs),
+        ]}
+      />
       {/* Hero Banner — cream, editorial */}
       <section style={{ background: 'var(--llk-cream)', borderTop: '4px solid #E2001A', paddingTop: '60px', paddingBottom: '50px' }}>
         <div className="container">
@@ -135,7 +146,7 @@ export default function ContactView() {
             <div className="col-lg-5">
               <div className="contact-form-card p-4 p-md-5" style={{ border: '1px solid #D4AF37', borderRadius: '16px', background: '#FCFBF7', boxShadow: '0 15px 40px rgba(212, 175, 55, 0.08)' }}>
                 <h2 style={{ fontSize: '22px', fontWeight: '850', color: '#1a1a1a', marginBottom: '10px', borderBottom: '2px solid #E2001A', paddingBottom: '10px' }}>
-                  Ask Our Veterinary Advisors
+                  Ask Labrador.lk
                 </h2>
                 
                 {submitted ? (
@@ -145,8 +156,8 @@ export default function ContactView() {
                     </div>
                     <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#1a1a1a', marginBottom: '10px' }}>Question Received Successfully</h3>
                     <p style={{ fontSize: '13px', color: '#555', lineHeight: '1.5' }}>
-                      Thank you! Your question has been forwarded to <strong>our brand care advisors</strong>. 
-                      An advisory response will be sent to your email address within 48 hours.
+                      Thank you! Your question has been received by <strong>Labrador.lk</strong>.
+                      We may use it to improve future educational articles and owner guides.
                     </p>
                     <button 
                       type="button" 
@@ -215,7 +226,7 @@ export default function ContactView() {
                       className="btn w-100" 
                       style={{ background: '#E2001A', color: '#fff', borderRadius: '30px', fontWeight: '700', padding: '12px 20px' }}
                     >
-                      Submit Question to Vet <i className="fas fa-paper-plane" style={{ marginLeft: '5px' }}></i>
+                      Submit Question <i className="fas fa-paper-plane" style={{ marginLeft: '5px' }}></i>
                     </button>
                   </form>
                 )}

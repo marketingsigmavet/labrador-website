@@ -1,32 +1,12 @@
-# Labrador.lk — Exact Zaira Index Template Converted to React
+# Labrador.lk React Website
 
-This project converts the provided **Zaira `index.html` default homepage** into a React/Vite project.
+Labrador.lk is a premium, article-first educational website for Labrador Retriever owners in Sri Lanka. It is built with Vite, React, and React Router.
 
-## What was done
-
-- Used the default `index.html` homepage from the uploaded Zaira template.
-- Ignored the other homepage files as requested.
-- Preserved the original Zaira homepage layout, class names, assets, and section structure.
-- Copied the original template assets into `public/assets`.
-- Converted the homepage into a React-rendered template.
-- Added a Royal Canin-inspired palette: white, red, deep red, cream, and light gold.
-- Added Labrador.lk branding/logo.
-- Added smooth scroll reveal animations.
-- Added fallback React-side interactions for menu, offcanvas, dark mode, scroll-to-top, and background images.
-
-## Run locally
+## Local Development
 
 ```bash
 npm install
 npm run dev
-```
-
-If npm ever points to a wrong registry, run:
-
-```bash
-npm config set registry https://registry.npmjs.org/
-npm cache clean --force
-npm install
 ```
 
 ## Build
@@ -35,13 +15,67 @@ npm install
 npm run build
 ```
 
-## Main files
+The production build is written to `dist/`.
 
-- `src/templateHtml.js` — converted Zaira default homepage markup.
-- `src/App.jsx` — React wrapper and behavior hooks.
-- `src/royal-canin-theme.css` — Royal Canin-inspired color palette and smooth animations.
-- `public/assets/` — original Zaira assets.
+## Routes
 
-## Next step
+- `/` - curated magazine homepage
+- `/articles` - searchable article library
+- `/articles/:slug` - article detail page
+- `/hubs/:hubSlug` - hub page for Puppy Care, Nutrition, Breed, Grooming, or Health
+- `/tags/:tagSlug` - articles filtered by tag
+- `/series/:seriesSlug` - articles in a series
+- `/about` - about Labrador.lk
+- `/ask` - Ask Labrador.lk / FAQ
 
-After confirming this template conversion is visually correct, the Labrador.lk article/category/content system can be added step by step without breaking the original template layout.
+Legacy paths such as `/puppy-care`, `/nutrition`, `/breed`, `/grooming`, `/health`, and `/contact` redirect to their routed equivalents.
+
+## Article Data
+
+Article files live in `src/data/articles/{hub}/`. The master index is `src/data/articleData.js`, which imports all article files and normalizes them into the publish-ready schema.
+
+Required normalized fields:
+
+- `id`
+- `slug`
+- `title`
+- `hub`
+- `category`
+- `tags`
+- `excerpt`
+- `readingTime`
+- `difficultyLevel`
+- `lifeStage`
+- `relatedArticles`
+- `recommendedNext`
+- `series`
+- `productsMentioned`
+- `seoTitle`
+- `seoDescription`
+- `aiSummary`
+- `quickAnswer`
+- `sections`
+- `faqs`
+- `productBlock`
+
+Existing article files can still use legacy fields such as `tag`, `readTime`, and `content`; the master index normalizes them.
+
+## Adding An Article
+
+1. Create a new file in the correct hub folder under `src/data/articles/`.
+2. Export it as `export const article = { ... }`.
+3. Add the import and raw article entry in `src/data/articleData.js`.
+4. Use only Labrador-specific educational content.
+5. Keep product mentions subtle and educational:
+   - Royal Canin: puppy feeding, nutrition, feeding routine, weight management, obesity, breed-specific nutrition.
+   - Beaphar: dental care, ear care, grooming hygiene, comfort/stress, supplements, daily care.
+6. Run `npm run build`.
+
+## SEO And AI Structure
+
+Article pages update title, meta description, canonical URL, Open Graph basics, and JSON-LD for Article, FAQPage, and BreadcrumbList. Hub and article listing pages output ItemList JSON-LD.
+
+## Publishing Note
+
+Because this is a React SPA, the hosting platform should route unknown paths back to `index.html` so direct URLs like `/articles/complete-labrador-feeding-guide-sri-lanka` load correctly.
+

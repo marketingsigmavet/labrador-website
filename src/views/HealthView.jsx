@@ -92,8 +92,8 @@ export default function HealthView({ onReadArticle, onNavigate }) {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
                   <i className={`fas ${fact.icon}`} style={{ fontSize: '18px', color: '#E2001A' }}></i>
                   <div style={{ textAlign: 'left' }}>
-                    <div style={{ fontSize: '11px', fontWeight: '700', color: '#888', textTransform: 'uppercase', letterSpacing: '1px' }} dangerouslySetInnerHTML={{ __html: fact.label }}></div>
-                    <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }} dangerouslySetInnerHTML={{ __html: fact.text }}></div>
+                    <div style={{ fontSize: '11px', fontWeight: '700', color: '#888', textTransform: 'uppercase', letterSpacing: '1px' }}>{fact.label}</div>
+                    <div style={{ fontSize: '13px', fontWeight: '700', color: '#fff' }}>{fact.text.replace('&amp;', 'and')}</div>
                   </div>
                 </div>
               </div>
