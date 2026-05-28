@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { hubs } from "../data/taxonomy";
+import { publicPath } from "../utils/publicPath";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -76,7 +77,7 @@ export default function Header() {
                   <div className="col-xl-2 col-lg-3 col-md-4">
                     <div className="logo text-center">
                       <Link to="/" style={{ display: "inline-block" }}>
-                        <img src="/assets/img/logo/logo.png" alt="Labrador.lk" style={{ maxHeight: "55px" }} />
+                        <img src={publicPath("/assets/img/logo/logo.png")} alt="Labrador.lk" style={{ maxHeight: "55px" }} />
                       </Link>
                     </div>
                   </div>
@@ -111,7 +112,7 @@ export default function Header() {
                 <nav className="menu-box" aria-label="Mobile navigation">
                   <div className="close-btn"><i className="fas fa-times"></i></div>
                   <div className="nav-logo text-center py-3">
-                    <Link to="/"><img src="/assets/img/logo/logo.png" alt="Labrador.lk" style={{ maxHeight: "45px" }} /></Link>
+                    <Link to="/"><img src={publicPath("/assets/img/logo/logo.png")} alt="Labrador.lk" style={{ maxHeight: "45px" }} /></Link>
                   </div>
                   <div className="mobile-search">
                     <form onSubmit={submitSearch}>
@@ -149,7 +150,7 @@ export default function Header() {
           <div className="offCanvas-content">
             <div className="offCanvas-logo logo">
               <Link to="/" className="logo-dark">
-                <img src="/assets/img/logo/logo.png" alt="Labrador.lk" style={{ maxHeight: "60px" }} />
+                <img src={publicPath("/assets/img/logo/logo.png")} alt="Labrador.lk" style={{ maxHeight: "60px" }} />
               </Link>
             </div>
             <p style={{ color: "#555", fontSize: "14px", lineHeight: 1.6, marginTop: "20px" }}>

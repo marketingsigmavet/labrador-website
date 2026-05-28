@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { hubs } from "../data/taxonomy";
+import { publicPath } from "../utils/publicPath";
 
 export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
@@ -12,7 +13,7 @@ export default function Footer() {
           <div className="row">
             <div className="col-lg-4 col-md-6 footer-brand">
               <Link to="/" aria-label="Labrador.lk home" style={{ display: "inline-flex", marginBottom: "20px" }}>
-                <img alt="Labrador.lk" src="/assets/img/logo/w_logo.png" style={{ maxHeight: "55px" }} />
+                <img alt="Labrador.lk" src={publicPath("/assets/img/logo/w_logo.png")} style={{ maxHeight: "55px" }} />
               </Link>
               <p className="text">
                 Labrador.lk is a premium article-first education platform for Labrador Retriever owners in Sri Lanka.

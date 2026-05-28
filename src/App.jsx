@@ -3,6 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { publicPath } from "./utils/publicPath";
 import HomeView from "./views/HomeView";
 import ArticleIndexView from "./views/ArticleIndexView";
 import ArticleReaderView from "./views/ArticleReaderView";
@@ -11,13 +12,13 @@ import AboutView from "./views/AboutView";
 import ContactView from "./views/ContactView";
 
 const scriptQueue = [
-  "/assets/js/vendor/jquery-3.6.0.min.js",
-  "/assets/js/bootstrap.min.js",
-  "/assets/js/jquery.magnific-popup.min.js",
-  "/assets/js/slick.min.js",
-  "/assets/js/swiper-bundle.js",
-  "/assets/js/wow.min.js",
-  "/assets/js/main.js",
+  publicPath("/assets/js/vendor/jquery-3.6.0.min.js"),
+  publicPath("/assets/js/bootstrap.min.js"),
+  publicPath("/assets/js/jquery.magnific-popup.min.js"),
+  publicPath("/assets/js/slick.min.js"),
+  publicPath("/assets/js/swiper-bundle.js"),
+  publicPath("/assets/js/wow.min.js"),
+  publicPath("/assets/js/main.js"),
 ];
 
 function loadScriptsSequentially(urls) {
