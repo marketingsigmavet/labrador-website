@@ -9,7 +9,14 @@ export const article = {
   series: "Labrador Health Prevention Series",
   seriesOrder: 4,
   date: "3 March, 2026",
-  image: "/assets/img/blog/featured_post04.jpg",
+  coverImage: {
+    src: "/images/articles/health/labrador-dental-care-bad-breath/cover.webp",
+    alt: "Labrador receiving gentle toothbrushing for dental care",
+    caption: "Bad breath can be a sign that dental care needs more attention.",
+    width: 1200,
+    height: 800,
+    style: "bw-red-editorial"
+  },
   readTime: "5 Mins",
   featured: false,
   seoTitle: "Labrador Dental Care: Bad Breath & Gum Disease Guide",

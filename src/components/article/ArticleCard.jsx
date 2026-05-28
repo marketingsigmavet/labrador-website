@@ -21,8 +21,8 @@ export default function ArticleCard({ article, variant = "default" }) {
     >
       <Link to={`/articles/${article.slug}`} style={{ display: "block", overflow: "hidden" }}>
         <img
-          src={article.image}
-          alt={article.title}
+          src={article.coverImage?.src || article.image}
+          alt={article.coverImage?.alt || article.title}
           style={{
             width: "100%",
             height: isLarge ? "300px" : "190px",

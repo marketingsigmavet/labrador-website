@@ -86,7 +86,7 @@ function ScrollAndEnhancements() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
 
     elements.forEach((element) => {
